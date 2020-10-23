@@ -9,7 +9,7 @@ namespace HangFire.Dashboard.Commom
         static ConfigurationManager()
         {
             AppSetting = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)
+                    .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("appsettings.json")
                     .Build();
         }

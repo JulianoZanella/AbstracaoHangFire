@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
@@ -97,11 +98,16 @@ namespace HangFire.Dashboard.Jobs
             try
             {
                 var config = BuscarConfiguracao();
-                var enumConexao = config.Element("ConexaoFactoryEnum").Value;
-                Log(enumConexao);
-                // CooperDesp.Data.Conexao.ConexaoFactoryEnum = (CooperDesp.Data.Enums.ConexaoFactoryEnum)int.Parse(enumConexao);
-                var ambiente = config.Element("Ambiente").Value;
-                _connectionString = config.Element(ambiente + "_sqlserver").Value;
+                // CooperDesp.Data.Conexao.ConexaoFactoryEnum = (CooperDesp.Data.Enums.ConexaoFactoryEnum)0;
+                var settings = config.Element("configuration").Element("applicationSettings").Elements("CooperDesp.RN.Properties.Settings");
+                var ambiente = from c in settings.Descendants("setting") where c.Attribute("name").Value == "Ambiente" select c.Value;
+                var amb = ambiente.FirstOrDefault() + "_sqlserver";
+                var connectionstring = config.Element("configuration")
+                    .Descendants("connectionStrings").Descendants("add")
+                    .Where(c => c.Attribute("name").Value == amb)
+                    .Select(c => c.Attribute("connectionString").Value)
+                    .FirstOrDefault();
+                _connectionString = connectionstring;
                 Log(_connectionString);
             }
             catch (Exception ex)
