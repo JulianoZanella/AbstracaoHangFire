@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HangFire.Dashboard.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HangFire.Dashboard.Controllers
 {
@@ -6,6 +7,7 @@ namespace HangFire.Dashboard.Controllers
     {
         public IActionResult Index()
         {
+            JobsService.Rodar();
             return Redirect(Url.Content("~/hangfire"));
         }
     }
