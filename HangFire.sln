@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangFire", "HangFire\HangFire.csproj", "{04720162-E744-4C1C-8319-121A95845DB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangFire.RN", "HangFire\HangFire.RN.csproj", "{04720162-E744-4C1C-8319-121A95845DB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangFire.Dashboard", "HangFire.Dashboard\HangFire.Dashboard.csproj", "{F498108A-73EC-48C6-9E3E-A9FF515FB09B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{04720162-E744-4C1C-8319-121A95845DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04720162-E744-4C1C-8319-121A95845DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04720162-E744-4C1C-8319-121A95845DB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F498108A-73EC-48C6-9E3E-A9FF515FB09B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F498108A-73EC-48C6-9E3E-A9FF515FB09B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F498108A-73EC-48C6-9E3E-A9FF515FB09B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F498108A-73EC-48C6-9E3E-A9FF515FB09B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
