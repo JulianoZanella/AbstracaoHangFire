@@ -12,19 +12,19 @@ namespace HangFire.Extensions
             var minutos = timeSpan.TotalMinutes;
             var horas = timeSpan.TotalHours;
             var dias = timeSpan.TotalDays;
-            if (dias > 0)
+            if (dias > 1)
             {
                 return string.Format(cron, ALL, ALL, ALL, "*/" + Math.Truncate(dias), ALL, ALL);
             }
-            if (horas > 0)
+            if (horas > 1)
             {
                 return string.Format(cron, ALL, ALL, "*/" + Math.Truncate(horas), ALL, ALL, ALL);
             }
-            if (minutos > 0)
+            if (minutos > 1)
             {
                 return string.Format(cron, ALL, "*/" + Math.Truncate(minutos), ALL, ALL, ALL, ALL);
             }
-            if (segundos > 0)
+            if (segundos > 1)
             {
                 return string.Format(cron, "*/" + Math.Truncate(minutos), ALL, ALL, ALL, ALL, ALL);
             }

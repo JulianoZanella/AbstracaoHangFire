@@ -1,20 +1,20 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace HangFire.Dashboard.Commom
+namespace HangFire.RN.Commom
 {
-    public static class ConfigurationManager
+    public static class Configuracao
     {
         public static IConfiguration AppSetting { get; }
-        static ConfigurationManager()
+        static Configuracao()
         {
-            AppSetting = new ConfigurationBuilder()
+            AppSetting = new ConfigurationBuilder()             
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("appsettings.json")
                     .Build();
         }
 
         public static string WebConfigPath { get { return AppSetting.GetValue<string>("WebConfigPath"); } }
-
+       
     }
 }

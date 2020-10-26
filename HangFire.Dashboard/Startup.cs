@@ -1,9 +1,13 @@
 using Hangfire;
+using Hangfire.SqlServer;
+using HangFire.RN.Commom;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace HangFire.Dashboard
 {
@@ -20,12 +24,25 @@ namespace HangFire.Dashboard
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.ConfiguraHangfireMvc(Configuration.GetConnectionString("HangfireConnection"));
+            services.AddHangfire(configuration => configuration
+             .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+             .UseSimpleAssemblyNameTypeSerializer()
+             .UseRecommendedSerializerSettings()
+             .UseSqlServerStorage(Util.BuscarConnectionStringHanfire(), new SqlServerStorageOptions
+             {
+                 CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+                 SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+                 QueuePollInterval = TimeSpan.Zero,
+                 UseRecommendedIsolationLevel = true,
+                 DisableGlobalLocks = true
+             }));
+
+            services.AddHangfireServer();
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IBackgroundJobClient backgroundJobs, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
@@ -41,7 +58,7 @@ namespace HangFire.Dashboard
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.ConfiguraHangfireDashboard();
+            app.UseHangfireDashboard();
 
             app.UseRouting();
 

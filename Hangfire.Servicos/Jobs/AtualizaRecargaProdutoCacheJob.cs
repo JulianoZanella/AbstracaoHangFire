@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace HangFire.Dashboard.Jobs
+namespace Hangfire.Servicos.Jobs
 {
     public class AtualizaRecargaProdutoCacheJob : BaseJob
     {
-        public AtualizaRecargaProdutoCacheJob() : base("AtualizaRecargaProdutoCacheJobSource", "AtualizaRecargaProdutoCacheJobLog", true)
+        public AtualizaRecargaProdutoCacheJob() : base(true)
         {
         }
 
