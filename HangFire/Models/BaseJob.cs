@@ -16,18 +16,35 @@ namespace Hangfire.RN.Models
             _service = new HangfireService();
         }
 
+        /// <summary>
+        /// Método usado para executar a rotina
+        /// </summary>
         public abstract void Rodar();
 
+        /// <summary>
+        /// Método para adicionar um serviço que executa uma única vez no hangfire
+        /// </summary>
+        /// <param name="funcao">Action que deve executar</param>
         public void ExecutarUmaVez(Action funcao)
         {
             _service.ExecutarUmaVez(funcao);
         }
 
+        /// <summary>
+        /// Método que executa repetidamente eternamente
+        /// </summary>
+        /// <param name="funcao">Action que deve executar</param>
+        /// <param name="tempo">O tempo em que ela deve reexecutar</param>
         public void ExecutarRepetidamente(Action funcao, TimeSpan tempo) 
         {
             _service.ExecutarRepetidamente(funcao, tempo);
         }
 
+        /// <summary>
+        /// Método que executa repetidamente eternamente
+        /// </summary>
+        /// <param name="funcao">Action que deve executar</param>
+        /// <param name="frequencia">A frequência de repetição</param>
         public void ExecutarRepetidamente(Action funcao, EExecutarRepetidamente frequencia)
         {
             _service.ExecutarRepetidamente(funcao, frequencia);

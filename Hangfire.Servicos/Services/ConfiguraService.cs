@@ -4,6 +4,9 @@ namespace Hangfire.Servicos.Services
 {
     public class ConfiguraService
     {
+        /// <summary>
+        /// Método que configua o Topshelf
+        /// </summary>
         internal static void Configura()
         {
             HostFactory.Run(conf =>

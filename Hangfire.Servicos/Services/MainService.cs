@@ -18,6 +18,9 @@ namespace Hangfire.Servicos.Services
             new AtualizaRecargaProdutoCacheJob().Rodar();
         }
 
+        /// <summary>
+        /// Método chamado ao Iniciar o Serviço no windows
+        /// </summary>
         public void Iniciar()
         {
             Console.WriteLine("Iniciando serviço");
@@ -25,9 +28,11 @@ namespace Hangfire.Servicos.Services
             Console.WriteLine("Serviços hangfire rodando");
         }
 
+        /// <summary>
+        /// Método chamado ao parar o serviço no Windows
+        /// </summary>
         public void Parar()
         {
-
         }
     }
 }
