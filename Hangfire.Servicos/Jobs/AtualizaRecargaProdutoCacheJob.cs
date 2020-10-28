@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HangFire.RN.Enums;
+using System;
 
 namespace Hangfire.Servicos.Jobs
 {
@@ -10,8 +11,7 @@ namespace Hangfire.Servicos.Jobs
 
         public override void Rodar()
         {
-            ExecutarUmaVez<AtualizaRecargaProdutoCacheJob>(Executar);
-            //ExecutarRepetidamente(Executar, TimeSpan.FromHours(4));
+            ExecutarRepetidamente<AtualizaRecargaProdutoCacheJob>(Executar, TimeSpan.FromMinutes(5));
         }
 
         public void Executar()
@@ -36,6 +36,7 @@ namespace Hangfire.Servicos.Jobs
                 //EnviarEmail();
                 //GravarEmArquivo();
             }
+
         }
     }
 }

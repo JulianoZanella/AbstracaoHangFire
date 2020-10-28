@@ -59,7 +59,6 @@ namespace HangFire.RN.Commom
                 var config = BuscarConfiguracao();
                 //CooperDesp.Data.Conexao.ConexaoFactoryEnum = (CooperDesp.Data.Enums.ConexaoFactoryEnum)int.Parse(config.AppSettings.Settings["ConexaoFactoryEnum"].Value);
                 _connectionString = config.ConnectionStrings.ConnectionStrings[config.AppSettings.Settings["Ambiente"].Value + "_sqlserver"].ConnectionString;
-                Log(_connectionString);
             }
             catch (Exception ex)
             {

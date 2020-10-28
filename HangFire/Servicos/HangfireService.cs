@@ -28,7 +28,25 @@ namespace HangFire.RN.Servicos
             });
         }
 
-        public static void ExecutarUmaVez<T>(Action funcao) where T : IBaseJob
+        public void ExecutarUmaVez<T>(Action funcao) where T : IBaseJob
+        {
+            var lambda = TransformarEmLambda<T>(funcao);
+            BackgroundJob.Enqueue(lambda);
+        }
+
+        public void ExecutarRepetidamente<T>(Action funcao, TimeSpan tempo)
+        {
+            var lambda = TransformarEmLambda<T>(funcao);
+            RecurringJob.AddOrUpdate(lambda, tempo.ToCronExpression());
+        }
+
+        public void ExecutarRepetidamente<T>(Action funcao, EExecutarRepetidamente frequencia)
+        {
+            var time = TimeSpan.FromSeconds((int)frequencia);
+            ExecutarRepetidamente<T>(funcao, time);
+        }
+
+        private Expression<Action> TransformarEmLambda<T>(Action funcao)
         {
             var testMethodInfo = (typeof(T)).GetMethod(funcao.Method.Name, BindingFlags.Public | BindingFlags.Instance);
             var instance = (T)Activator.CreateInstance(typeof(T));
@@ -36,20 +54,7 @@ namespace HangFire.RN.Servicos
             var exp = Expression.Call(i, testMethodInfo);
 
             var lambda = Expression.Lambda<Action>(exp);
-
-            BackgroundJob.Enqueue(() => lambda.Compile().Invoke());
-        }
-
-        public void ExecutarRepetidamente(Action funcao, TimeSpan tempo)
-        {
-            Expression<Action> expressao = () => funcao.Invoke();
-            RecurringJob.AddOrUpdate(expressao, tempo.ToCronExpression());
-        }
-
-        public void ExecutarRepetidamente(Action funcao, EExecutarRepetidamente frequencia)
-        {
-            var time = TimeSpan.FromSeconds((int)frequencia);
-            ExecutarRepetidamente(funcao, time);
+            return lambda;
         }
     }
 }

@@ -19,17 +19,17 @@ namespace Hangfire.Servicos.Jobs
 
         public void ExecutarUmaVez<T>(Action funcao) where T : IBaseJob
         {
-            HangfireService.ExecutarUmaVez<T>(funcao);
+            _service.ExecutarUmaVez<T>(funcao);
         }
 
-        public void ExecutarRepetidamente(Action funcao, TimeSpan tempo)
+        public void ExecutarRepetidamente<T>(Action funcao, TimeSpan tempo) where T : IBaseJob
         {
-            _service.ExecutarRepetidamente(funcao, tempo);
+            _service.ExecutarRepetidamente<T>(funcao, tempo);
         }
 
-        public void ExecutarRepetidamente(Action funcao, EExecutarRepetidamente frequencia)
+        public void ExecutarRepetidamente<T>(Action funcao, EExecutarRepetidamente frequencia) where T : IBaseJob
         {
-            _service.ExecutarRepetidamente(funcao, frequencia);
+            _service.ExecutarRepetidamente<T>(funcao, frequencia);
         }
 
         protected void Log(string msg)
