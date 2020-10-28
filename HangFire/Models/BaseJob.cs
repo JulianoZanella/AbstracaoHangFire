@@ -1,9 +1,10 @@
 ﻿using HangFire.RN.Commom;
 using HangFire.RN.Enums;
+using HangFire.RN.Models;
 using HangFire.RN.Servicos;
 using System;
 
-namespace Hangfire.Servicos.Jobs
+namespace Hangfire.RN.Models
 {
     public abstract class BaseJob : IBaseJob
     {
@@ -39,12 +40,12 @@ namespace Hangfire.Servicos.Jobs
 
         protected void LogException(Exception ex, string msg)
         {
-            LogException(ex, msg);
+            _util.LogException(ex, msg);
         }
 
         public string PegaLog()
         {
-            return _util._sb.ToString();
+            return _util.LogStringBuilder.ToString();
         }
 
     }

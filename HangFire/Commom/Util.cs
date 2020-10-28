@@ -10,7 +10,7 @@ namespace HangFire.RN.Commom
     {
         private readonly ILogger _log;
         private string _connectionString;
-        public StringBuilder _sb = new StringBuilder();
+        public StringBuilder LogStringBuilder = new StringBuilder();
         private string _webConfigPath;
 
         public Util(ILogger logger, bool preparaConexao = false)
@@ -47,6 +47,10 @@ namespace HangFire.RN.Commom
         public static string BuscarConnectionStringHanfire()
         {
             //TODO: Buscar das configs
+            /*
+             * var config = BuscarConfiguracao();
+             * return config.ConnectionStrings.ConnectionStrings[config.AppSettings.Settings["Ambiente"].Value + "_hangfire"].ConnectionString;
+             * */
             return "Server=localhost;Database=HangFireSample;User Id=developer;Password=12345678";
         }
 
@@ -84,7 +88,7 @@ namespace HangFire.RN.Commom
         {
             msg = string.Format("{0}: {1}", DateTime.Now, msg);
             Console.WriteLine(msg);
-            _sb.AppendLine(msg);
+            LogStringBuilder.AppendLine(msg);
             _log?.LogInformation(msg);
         }
 
@@ -93,12 +97,12 @@ namespace HangFire.RN.Commom
             string mensagem = string.Format("ERRO na função: {0} - {1}\nStackTrace:\n{2}", funcao, ex.Message, ex.StackTrace);
             mensagem = string.Format("{0}: {1}", DateTime.Now, mensagem);
             Console.WriteLine(mensagem);
-            _sb.AppendLine(mensagem);
+            LogStringBuilder.AppendLine(mensagem);
             _log?.LogError(mensagem);
             if (ex.InnerException != null)
             {
                 mensagem = "Inner Exception: " + ex.InnerException.Message;
-                _sb.AppendLine(mensagem);
+                LogStringBuilder.AppendLine(mensagem);
                 _log?.LogError(mensagem, LogLevel.Error);
             }
         }

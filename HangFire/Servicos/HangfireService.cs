@@ -3,6 +3,7 @@ using Hangfire.SqlServer;
 using HangFire.Extensions;
 using HangFire.RN.Commom;
 using HangFire.RN.Enums;
+using HangFire.RN.Models;
 using System;
 using System.Linq.Expressions;
 using System.Reflection;

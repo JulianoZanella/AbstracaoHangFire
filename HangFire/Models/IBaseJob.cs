@@ -1,7 +1,7 @@
 ﻿using HangFire.RN.Enums;
 using System;
 
-namespace HangFire.RN.Servicos
+namespace HangFire.RN.Models
 {
     public interface IBaseJob
     {
