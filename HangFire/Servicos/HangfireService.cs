@@ -10,7 +10,7 @@ using System.Reflection;
 
 namespace HangFire.RN.Servicos
 {
-    public class HangfireService
+    public class HangfireService : IHanfireService
     {
         public static void InicializaHangfire()
         {
@@ -35,13 +35,13 @@ namespace HangFire.RN.Servicos
             BackgroundJob.Enqueue(lambda);
         }
 
-        public void ExecutarRepetidamente<T>(Action funcao, TimeSpan tempo)
+        public void ExecutarRepetidamente<T>(Action funcao, TimeSpan tempo) where T : IBaseJob
         {
             var lambda = TransformarEmLambda<T>(funcao);
             RecurringJob.AddOrUpdate(lambda, tempo.ToCronExpression());
         }
 
-        public void ExecutarRepetidamente<T>(Action funcao, EExecutarRepetidamente frequencia)
+        public void ExecutarRepetidamente<T>(Action funcao, EExecutarRepetidamente frequencia) where T : IBaseJob
         {
             var time = TimeSpan.FromSeconds((int)frequencia);
             ExecutarRepetidamente<T>(funcao, time);
