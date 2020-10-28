@@ -6,7 +6,7 @@ namespace Hangfire.Servicos
     {
         static void Main(string[] args)
         {
-            MainService.Rodar();
+            ConfiguraService.Configura();
         }
     }
 }
