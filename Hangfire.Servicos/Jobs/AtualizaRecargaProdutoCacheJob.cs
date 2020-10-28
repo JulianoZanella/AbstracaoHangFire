@@ -10,10 +10,11 @@ namespace Hangfire.Servicos.Jobs
 
         public override void Rodar()
         {
-            ExecutarRepetidamente(Executar, TimeSpan.FromHours(4));
+            ExecutarUmaVez<AtualizaRecargaProdutoCacheJob>(Executar);
+            //ExecutarRepetidamente(Executar, TimeSpan.FromHours(4));
         }
 
-        private void Executar()
+        public void Executar()
         {
             var horaInicial = DateTime.Now;
             Log("Iniciando atualização de Operadoras e Produtos");

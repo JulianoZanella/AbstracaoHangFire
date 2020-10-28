@@ -8,13 +8,13 @@ namespace HangFire.RN.Commom
         public static IConfiguration AppSetting { get; }
         static Configuracao()
         {
-            AppSetting = new ConfigurationBuilder()             
+            AppSetting = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("appsettings.json")
                     .Build();
         }
 
-        public static string WebConfigPath { get { return AppSetting.GetValue<string>("WebConfigPath"); } }
-       
+        public static string WebConfigPath { get { return AppSetting.GetSection("WebConfigPath").Value; } }
+
     }
 }

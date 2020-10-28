@@ -1,5 +1,4 @@
 ﻿using Hangfire.Servicos.Services;
-using HangFire.RN.Servicos;
 using System;
 
 namespace Hangfire.Servicos
@@ -8,7 +7,6 @@ namespace Hangfire.Servicos
     {
         static void Main(string[] args)
         {
-            HangfireService.InicializaHangfire();
             JobsService.Rodar();
             Console.ReadLine();
         }

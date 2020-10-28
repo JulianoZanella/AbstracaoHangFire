@@ -5,29 +5,31 @@ using System;
 
 namespace Hangfire.Servicos.Jobs
 {
-    public abstract class BaseJob
+    public abstract class BaseJob : IBaseJob
     {
         private readonly Util _util;
+        private readonly HangfireService _service;
         public BaseJob(bool preparaConexao = false)
         {
             _util = new Util(null, preparaConexao);
+            _service = new HangfireService();
         }
 
         public abstract void Rodar();
 
-        public static void ExecutarUmaVez(Action funcao)
+        public void ExecutarUmaVez<T>(Action funcao) where T : IBaseJob
         {
-            HangfireService.ExecutarUmaVez(funcao);
+            HangfireService.ExecutarUmaVez<T>(funcao);
         }
 
-        public static void ExecutarRepetidamente(Action funcao, TimeSpan tempo)
+        public void ExecutarRepetidamente(Action funcao, TimeSpan tempo)
         {
-            HangfireService.ExecutarRepetidamente(funcao, tempo);
+            _service.ExecutarRepetidamente(funcao, tempo);
         }
 
-        public static void ExecutarRepetidamente(Action funcao, EExecutarRepetidamente frequencia)
+        public void ExecutarRepetidamente(Action funcao, EExecutarRepetidamente frequencia)
         {
-            HangfireService.ExecutarRepetidamente(funcao, frequencia);
+            _service.ExecutarRepetidamente(funcao, frequencia);
         }
 
         protected void Log(string msg)
@@ -44,5 +46,6 @@ namespace Hangfire.Servicos.Jobs
         {
             return _util._sb.ToString();
         }
+
     }
 }
