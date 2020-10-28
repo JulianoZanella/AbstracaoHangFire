@@ -18,19 +18,19 @@ namespace Hangfire.RN.Models
 
         public abstract void Rodar();
 
-        public void ExecutarUmaVez<T>(Action funcao) where T : IBaseJob
+        public void ExecutarUmaVez(Action funcao)
         {
-            _service.ExecutarUmaVez<T>(funcao);
+            _service.ExecutarUmaVez(funcao);
         }
 
-        public void ExecutarRepetidamente<T>(Action funcao, TimeSpan tempo) where T : IBaseJob
+        public void ExecutarRepetidamente(Action funcao, TimeSpan tempo) 
         {
-            _service.ExecutarRepetidamente<T>(funcao, tempo);
+            _service.ExecutarRepetidamente(funcao, tempo);
         }
 
-        public void ExecutarRepetidamente<T>(Action funcao, EExecutarRepetidamente frequencia) where T : IBaseJob
+        public void ExecutarRepetidamente(Action funcao, EExecutarRepetidamente frequencia)
         {
-            _service.ExecutarRepetidamente<T>(funcao, frequencia);
+            _service.ExecutarRepetidamente(funcao, frequencia);
         }
 
         protected void Log(string msg)

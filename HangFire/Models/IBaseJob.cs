@@ -6,8 +6,8 @@ namespace HangFire.RN.Models
     public interface IBaseJob
     {
         void Rodar();
-        void ExecutarUmaVez<T>(Action funcao) where T : IBaseJob;
-        void ExecutarRepetidamente<T>(Action funcao, TimeSpan tempo) where T : IBaseJob;
-        void ExecutarRepetidamente<T>(Action funcao, EExecutarRepetidamente frequencia) where T : IBaseJob;
+        void ExecutarUmaVez(Action funcao);
+        void ExecutarRepetidamente(Action funcao, TimeSpan tempo);
+        void ExecutarRepetidamente(Action funcao, EExecutarRepetidamente frequencia);
     }
 }

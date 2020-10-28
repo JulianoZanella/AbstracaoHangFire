@@ -29,28 +29,29 @@ namespace HangFire.RN.Servicos
             });
         }
 
-        public void ExecutarUmaVez<T>(Action funcao) where T : IBaseJob
-        {
-            var lambda = TransformarEmLambda<T>(funcao);
+        public void ExecutarUmaVez(Action funcao) 
+        {            
+            var lambda = TransformarEmLambda(funcao);
             BackgroundJob.Enqueue(lambda);
         }
 
-        public void ExecutarRepetidamente<T>(Action funcao, TimeSpan tempo) where T : IBaseJob
+        public void ExecutarRepetidamente(Action funcao, TimeSpan tempo)
         {
-            var lambda = TransformarEmLambda<T>(funcao);
+            var lambda = TransformarEmLambda(funcao);
             RecurringJob.AddOrUpdate(lambda, tempo.ToCronExpression());
         }
 
-        public void ExecutarRepetidamente<T>(Action funcao, EExecutarRepetidamente frequencia) where T : IBaseJob
+        public void ExecutarRepetidamente(Action funcao, EExecutarRepetidamente frequencia) 
         {
             var time = TimeSpan.FromSeconds((int)frequencia);
-            ExecutarRepetidamente<T>(funcao, time);
+            ExecutarRepetidamente(funcao, time);
         }
 
-        private Expression<Action> TransformarEmLambda<T>(Action funcao)
+        private Expression<Action> TransformarEmLambda(Action funcao)
         {
-            var testMethodInfo = (typeof(T)).GetMethod(funcao.Method.Name, BindingFlags.Public | BindingFlags.Instance);
-            var instance = (T)Activator.CreateInstance(typeof(T));
+            var classe = funcao.GetMethodInfo().DeclaringType;
+            var testMethodInfo = (classe).GetMethod(funcao.Method.Name, BindingFlags.Public | BindingFlags.Instance);
+            var instance = Activator.CreateInstance(classe);
             var i = Expression.Constant(instance);
             var exp = Expression.Call(i, testMethodInfo);
 

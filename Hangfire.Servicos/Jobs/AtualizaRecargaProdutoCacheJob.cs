@@ -11,8 +11,8 @@ namespace Hangfire.Servicos.Jobs
 
         public override void Rodar()
         {
-            ExecutarUmaVez<AtualizaRecargaProdutoCacheJob>(Executar);
-
+            ExecutarUmaVez(Executar);
+            ExecutarRepetidamente(Executar, TimeSpan.FromMinutes(5));
         }
 
         public void Executar()
