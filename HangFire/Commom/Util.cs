@@ -44,7 +44,7 @@ namespace HangFire.RN.Commom
 
         public static string BuscarConnectionStringApp()
         {
-            return Configuracao.HangFireConnectionString;
+            return Configuracao.AppConnectionString;
         }
 
         public static IConfiguration BuscarConfiguracao()

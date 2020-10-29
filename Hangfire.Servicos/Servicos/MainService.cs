@@ -1,7 +1,7 @@
 ﻿using HangFire.RN.Servicos;
 using System;
 
-namespace Hangfire.Servicos.Services
+namespace Hangfire.Servicos.Servicos
 {
     /// <summary>
     /// Classe onde devem ser iniciados os Jobs.

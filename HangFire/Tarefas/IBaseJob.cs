@@ -1,7 +1,7 @@
 ﻿using HangFire.RN.Enums;
 using System;
 
-namespace HangFire.RN.Models
+namespace HangFire.RN.Tarefas
 {
     public interface IBaseJob
     {

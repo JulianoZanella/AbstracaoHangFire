@@ -1,6 +1,6 @@
 ﻿using Topshelf;
 
-namespace Hangfire.Servicos.Services
+namespace Hangfire.Servicos.Servicos
 {
     public class ConfiguraService
     {

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Jobs\" />
+    <Folder Include="Tarefas\" />
   </ItemGroup>
 
 </Project>

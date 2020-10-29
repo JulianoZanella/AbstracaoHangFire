@@ -11,7 +11,7 @@ namespace HangFire.RN.Repositorios
         T Buscar(string sql, SqlTransaction transacao, object filtro = null);
         IEnumerable<T> Listar(string sql, object filtro = null);
         IEnumerable<T> Listar(string sql, SqlTransaction transtransacaoaction, object filtro = null);
-        int Apagar(string sql, object filtro = null);
+        int Excluir(string sql, object filtro = null);
         int Apagar(string sql, SqlTransaction transacao, object filtro = null);
         R PegarUmValor<R>(string sql, object filtro = null);
         R PegarUmValor<R>(string sql, SqlTransaction transacao, object filtro = null);

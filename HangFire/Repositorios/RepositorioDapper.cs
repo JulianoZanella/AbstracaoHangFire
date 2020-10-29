@@ -50,7 +50,7 @@ namespace HangFire.RN.Repositorios
             return ConexaoSqlServer.SqlConnection.Query<T>(sql, filtro, transaction, commandTimeout: _commandTimeout);
         }
 
-        public int Apagar(string sql, object filtro = null)
+        public int Excluir(string sql, object filtro = null)
         {
             return ConexaoSqlServer.SqlConnection.Execute(sql, filtro, commandTimeout: _commandTimeout);
         }

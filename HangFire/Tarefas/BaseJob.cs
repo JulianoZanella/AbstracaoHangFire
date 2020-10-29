@@ -1,11 +1,11 @@
 ﻿using HangFire.RN.Commom;
 using HangFire.RN.Enums;
-using HangFire.RN.Models;
 using HangFire.RN.Servicos;
+using HangFire.RN.Tarefas;
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace Hangfire.RN.Models
+namespace Hangfire.RN.Tarefas
 {
     public abstract class BaseJob : IBaseJob
     {

@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HangFire.RN", "HangFire\Han
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HangFire.Dashboard", "HangFire.Dashboard\HangFire.Dashboard.csproj", "{F498108A-73EC-48C6-9E3E-A9FF515FB09B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangfire.Servicos", "Hangfire.Servicos\Hangfire.Servicos.csproj", "{79C2B8A7-E97E-4D6A-88CA-8E4B9CC2D1E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hangfire.Servicos", "Hangfire.Servicos\Hangfire.Servicos.csproj", "{79C2B8A7-E97E-4D6A-88CA-8E4B9CC2D1E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangFire.Tests", "HangFire.Tests\HangFire.Tests.csproj", "{5B6C61E9-91C6-432A-97AF-58FD75DE0DF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{79C2B8A7-E97E-4D6A-88CA-8E4B9CC2D1E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79C2B8A7-E97E-4D6A-88CA-8E4B9CC2D1E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79C2B8A7-E97E-4D6A-88CA-8E4B9CC2D1E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B6C61E9-91C6-432A-97AF-58FD75DE0DF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B6C61E9-91C6-432A-97AF-58FD75DE0DF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B6C61E9-91C6-432A-97AF-58FD75DE0DF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B6C61E9-91C6-432A-97AF-58FD75DE0DF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
