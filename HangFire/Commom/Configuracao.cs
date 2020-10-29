@@ -15,6 +15,8 @@ namespace HangFire.RN.Commom
         }
 
         public static string WebConfigPath { get { return AppSetting.GetSection("WebConfigPath").Value; } }
-
+        public static string HangFireConnectionString { get { return AppSetting.GetConnectionString("HangfireConnection"); } }
+        public static string AppConnectionString { get { return AppSetting.GetConnectionString("AppConnection"); } }
+        public static string CaminhoLog { get { return AppSetting.GetSection("CaminhoLog").Value; } }
     }
 }

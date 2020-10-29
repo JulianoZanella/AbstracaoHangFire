@@ -13,4 +13,8 @@
     <ProjectReference Include="..\HangFire\HangFire.RN.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Jobs\" />
+  </ItemGroup>
+
 </Project>

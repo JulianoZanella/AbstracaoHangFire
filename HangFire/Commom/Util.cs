@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Configuration;
 using System.IO;
@@ -9,29 +10,21 @@ namespace HangFire.RN.Commom
     public class Util
     {
         private readonly ILogger _log;
-        private string _connectionString;
         public StringBuilder LogStringBuilder = new StringBuilder();
-        private string _webConfigPath;
 
-        public Util(ILogger logger, bool preparaConexao = false)
+        public Util(ILogger logger)
         {
             _log = logger;
-            _webConfigPath = Configuracao.WebConfigPath;
-            if (preparaConexao && !PreparaConexao())
-            {
-                var ex = new Exception("BaseJob: conexao não encontrada!");
-                LogException(ex, "BaseJob");
-                throw ex;
-            }
         }
-        public Configuration BuscarConfiguracao()
+
+        public Configuration BuscarConfiguracaoWebConfig()
         {
-            var exeFilePath = Path.Combine(_webConfigPath, "web.config");
+            var exeFilePath = Path.Combine(Configuracao.WebConfigPath, "web.config");
 
             if (!File.Exists(exeFilePath))
             {
-                var ex = new Exception("BaseJob: web.config não encontrado!\n" + exeFilePath);
-                LogException(ex, "Buscar Configuração");
+                var ex = new Exception("Util: web.config não encontrado!\n" + exeFilePath);
+                LogException(ex, "BuscarConfiguração");
                 throw ex;
             }
 
@@ -46,42 +39,17 @@ namespace HangFire.RN.Commom
 
         public static string BuscarConnectionStringHanfire()
         {
-            //TODO: Buscar das configs
-            /*
-             * var config = BuscarConfiguracao();
-             * return config.ConnectionStrings.ConnectionStrings[config.AppSettings.Settings["Ambiente"].Value + "_hangfire"].ConnectionString;
-             * */
-            return "Server=localhost;Database=HangFireSample;User Id=developer;Password=12345678";
+            return Configuracao.HangFireConnectionString;
         }
 
-        public bool PreparaConexao()
+        public static string BuscarConnectionStringApp()
         {
-            Log("Iniciando PreparaConexao");
+            return Configuracao.HangFireConnectionString;
+        }
 
-            try
-            {
-                var config = BuscarConfiguracao();
-                //CooperDesp.Data.Conexao.ConexaoFactoryEnum = (CooperDesp.Data.Enums.ConexaoFactoryEnum)int.Parse(config.AppSettings.Settings["ConexaoFactoryEnum"].Value);
-                _connectionString = config.ConnectionStrings.ConnectionStrings[config.AppSettings.Settings["Ambiente"].Value + "_sqlserver"].ConnectionString;
-            }
-            catch (Exception ex)
-            {
-                LogException(ex, "ConnectionString");
-                return false;
-            }
-
-            try
-            {
-                //string factory = CooperDesp.Data.Conexao.Factory;
-                //new Parameters(factory, _connectionString);
-            }
-            catch (Exception ex)
-            {
-                LogException(ex, "PreparaConexao");
-                return false;
-            }
-
-            return true;
+        public static IConfiguration BuscarConfiguracao()
+        {
+            return Configuracao.AppSetting;
         }
 
         public void Log(string msg)
@@ -107,31 +75,26 @@ namespace HangFire.RN.Commom
             }
         }
 
-        /*
-        public void EnviarEmail(TipoEnvioEmail tipoEnvioEmail, string mensagem)
+        public void GravarLogEmArquivo(string nomeArquivo)
         {
-            Log("Enviando email tipo:" + tipoEnvioEmail.ToString());
-            var configuracaoEnvioEmail = ConfiguracaoEnvioEmail.Busca(tipoEnvioEmail);
-            if (!Conexao.MandaEmail(configuracaoEnvioEmail.Remetente, configuracaoEnvioEmail.Destinatarios, configuracaoEnvioEmail.Assunto, mensagem))
+            var path = Configuracao.CaminhoLog;
+            try
             {
-                Log("Erro ao enviar Email");
+                Directory.CreateDirectory(path);
+                var diretorioLog = string.Format(@"{0}\{1}.{2}.txt", path, DateTime.Now.ToString("yyyy.MM.dd"), nomeArquivo);
+                Log(string.Format("Gravando em arquivo: {0}", diretorioLog));
+                File.Create(diretorioLog).Dispose();
+                using (StreamWriter file = new StreamWriter(diretorioLog, true))
+                {
+                    file.Write(LogStringBuilder.ToString());
+                }
+                Log("Arquivo de Log Finalizado");
+            }
+            catch (Exception ex)
+            {
+                LogException(ex, "Util.GravarLogEmArquivo");
+                throw ex;
             }
         }
-
-        public void GravarEmArquivo(string nomeArquivo)
-        {
-            var path = Configuracao.Path("CaminhoLog");
-            Directory.CreateDirectory(path);
-            var diretorioLog = string.Format(@"{0}\{1}.{2}.txt", path, DateTime.Now.ToString("yyyy.MM.dd"), nomeArquivo);
-            Log(string.Format("Gravando em arquivo: {0}", diretorioLog));
-            File.Create(diretorioLog).Dispose();
-            using (StreamWriter file = new StreamWriter(diretorioLog, true))
-            {
-                file.Write(_sb.ToString());
-            }
-            Log("Arquivo de Log Finalizado");
-        }
-        */
-
     }
 }
