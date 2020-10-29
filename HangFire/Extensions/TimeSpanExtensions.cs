@@ -14,15 +14,15 @@ namespace HangFire.Extensions
             var dias = timeSpan.TotalDays;
             if (dias > 1)
             {
-                return string.Format(cron, ALL, ALL, ALL, "*/" + Math.Truncate(dias), ALL, ALL);
+                return string.Format(cron, "0", "0", "0", "*/" + Math.Truncate(dias), ALL, ALL);
             }
             if (horas > 1)
             {
-                return string.Format(cron, ALL, ALL, "*/" + Math.Truncate(horas), ALL, ALL, ALL);
+                return string.Format(cron, "0", "0", "*/" + Math.Truncate(horas), ALL, ALL, ALL);
             }
             if (minutos > 1)
             {
-                return string.Format(cron, ALL, "*/" + Math.Truncate(minutos), ALL, ALL, ALL, ALL);
+                return string.Format(cron, "0", "*/" + Math.Truncate(minutos), ALL, ALL, ALL, ALL);
             }
             if (segundos > 1)
             {

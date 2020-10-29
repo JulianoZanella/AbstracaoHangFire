@@ -49,7 +49,7 @@ namespace HangFire.RN.Servicos
         public void ExecutarRepetidamente(Action funcao, TimeSpan tempo)
         {
             var lambda = TransformarEmLambda(funcao);
-            RecurringJob.AddOrUpdate(lambda, tempo.ToCronExpression());
+            RecurringJob.AddOrUpdate(lambda, tempo.ToCronExpression(), TimeZoneInfo.Local);
         }
 
         /// <summary>

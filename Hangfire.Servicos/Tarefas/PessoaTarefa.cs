@@ -1,6 +1,7 @@
 ﻿using Hangfire.RN.Tarefas;
 using HangFire.RN.Entidades;
 using HangFire.RN.Repositorios;
+using System;
 
 namespace Hangfire.Servicos.Tarefas
 {
@@ -15,7 +16,7 @@ namespace Hangfire.Servicos.Tarefas
 
         public override void Rodar()
         {
-            ExecutarUmaVez(IncluirPessoa);
+            ExecutarRepetidamente(IncluirPessoa, TimeSpan.FromMinutes(5));
         }
 
         public void IncluirPessoa()
