@@ -1,4 +1,4 @@
-﻿using Hangfire.Servicos.Services;
+﻿using Hangfire.Servicos.Servicos;
 
 namespace Hangfire.Servicos
 {

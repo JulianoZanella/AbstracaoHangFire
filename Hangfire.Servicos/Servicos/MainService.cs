@@ -1,4 +1,5 @@
-﻿using HangFire.RN.Servicos;
+﻿using Hangfire.Servicos.Tarefas;
+using HangFire.RN.Servicos;
 using System;
 
 namespace Hangfire.Servicos.Servicos
@@ -14,6 +15,7 @@ namespace Hangfire.Servicos.Servicos
         public static void Rodar()
         {
             HangfireService.InicializaHangfire();
+            new PessoaTarefa().Rodar();
         }
 
         /// <summary>

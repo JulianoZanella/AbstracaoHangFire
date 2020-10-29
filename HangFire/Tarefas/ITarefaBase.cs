@@ -3,7 +3,7 @@ using System;
 
 namespace HangFire.RN.Tarefas
 {
-    public interface IBaseJob
+    public interface ITarefaBase
     {
         void Rodar();
         void ExecutarUmaVez(Action funcao);

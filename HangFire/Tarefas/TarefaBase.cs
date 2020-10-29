@@ -7,11 +7,11 @@ using System;
 
 namespace Hangfire.RN.Tarefas
 {
-    public abstract class BaseJob : IBaseJob
+    public abstract class TarefaBase : ITarefaBase
     {
         private readonly Util _util;
         private readonly HangfireService _service;
-        public BaseJob(ILogger logger = null)
+        public TarefaBase(ILogger logger = null)
         {
             _util = new Util(logger);
             _service = new HangfireService();

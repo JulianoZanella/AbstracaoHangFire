@@ -13,8 +13,4 @@
     <ProjectReference Include="..\HangFire\HangFire.RN.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Tarefas\" />
-  </ItemGroup>
-
 </Project>
