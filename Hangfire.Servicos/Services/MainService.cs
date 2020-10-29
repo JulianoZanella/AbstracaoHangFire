@@ -1,5 +1,4 @@
-﻿using Hangfire.Servicos.Jobs;
-using HangFire.RN.Servicos;
+﻿using HangFire.RN.Servicos;
 using System;
 
 namespace Hangfire.Servicos.Services
@@ -15,7 +14,6 @@ namespace Hangfire.Servicos.Services
         public static void Rodar()
         {
             HangfireService.InicializaHangfire();
-            new AtualizaRecargaProdutoCacheJob().Rodar();
         }
 
         /// <summary>

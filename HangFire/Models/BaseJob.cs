@@ -2,6 +2,7 @@
 using HangFire.RN.Enums;
 using HangFire.RN.Models;
 using HangFire.RN.Servicos;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace Hangfire.RN.Models
@@ -10,9 +11,9 @@ namespace Hangfire.RN.Models
     {
         private readonly Util _util;
         private readonly HangfireService _service;
-        public BaseJob(bool preparaConexao = false)
+        public BaseJob(ILogger logger = null)
         {
-            _util = new Util(null, preparaConexao);
+            _util = new Util(logger);
             _service = new HangfireService();
         }
 
