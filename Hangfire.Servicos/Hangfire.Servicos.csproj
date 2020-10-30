@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HangFire\HangFire.RN.csproj" />
+    <ProjectReference Include="..\HangFire.RN\HangFire.RN.csproj" />
   </ItemGroup>
 
 </Project>

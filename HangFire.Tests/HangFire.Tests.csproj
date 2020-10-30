@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HangFire.RN\HangFire.RN.csproj" />
     <ProjectReference Include="..\Hangfire.Servicos\Hangfire.Servicos.csproj" />
-    <ProjectReference Include="..\HangFire\HangFire.RN.csproj" />
   </ItemGroup>
 
 </Project>

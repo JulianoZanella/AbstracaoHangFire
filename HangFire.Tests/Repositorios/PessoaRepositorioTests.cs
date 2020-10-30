@@ -3,7 +3,7 @@ using HangFire.RN.Repositorios;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 
-namespace HangFire.Tests
+namespace HangFire.Tests.Repositorios
 {
     [TestClass]
     public class PessoaRepositorioTests
